@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Smurfs from "./Smurfs";
 import Form from "./Form";
 
-import "./App.css";
+import "./App.scss";
 
 class App extends Component {
   render() {
@@ -16,4 +16,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

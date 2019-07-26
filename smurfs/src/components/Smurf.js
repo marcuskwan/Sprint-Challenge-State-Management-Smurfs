@@ -11,6 +11,12 @@ function Smurf({ smurf }) {
   );
 }
 
-Smurf.propTypes = {};
+Smurf.propTypes = {
+  smurf: PropTypes.shape({
+    name: PropTypes.string,
+    age: PropTypes.number,
+    height: PropTypes.string,
+  }),
+};
 
 export default Smurf;

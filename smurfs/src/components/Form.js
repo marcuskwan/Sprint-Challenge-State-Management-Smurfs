@@ -24,7 +24,7 @@ function Form({ addSmurf }) {
   };
 
   return (
-    <div>
+    <div className="form">
       <form onSubmit={handleSubmit}>
         <input
           name="name"
@@ -34,6 +34,8 @@ function Form({ addSmurf }) {
         />
         <input
           name="age"
+          //? where in the server does it say that you can't have a same name smurf or not have a string as a number input? 
+          type="number"
           placeholder="age"
           value={inputs.age}
           onChange={handleChanges}
@@ -44,13 +46,15 @@ function Form({ addSmurf }) {
           value={inputs.height}
           onChange={handleChanges}
         />
-        <button>submit</button>
+        <button className="submit">submit</button>
       </form>
     </div>
   );
 }
 
-Form.propTypes = {};
+Form.propTypes = {
+  addSmurf: PropTypes.func,
+};
 
 const mapStateToProps = state => {
   return {};

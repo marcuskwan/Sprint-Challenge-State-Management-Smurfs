@@ -11,6 +11,7 @@ import { createStore, applyMiddleware } from "redux";
 
 import { Provider } from "react-redux";
 
+//? what really is a store?
 const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
