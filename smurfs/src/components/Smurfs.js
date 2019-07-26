@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useDispatch } from "react";
+
+import { isFetching } from "../actions";
 
 import PropTypes from "prop-types";
 
 function Smurfs(props) {
   useEffect(() => {
-    axios
-      .get("//localhost:3333/smurfs")
-      .then(res => console.log("get success:", res))
-      .catch(err => console.log(err));
+    isFetching();
   }, []);
   return <div />;
 }
