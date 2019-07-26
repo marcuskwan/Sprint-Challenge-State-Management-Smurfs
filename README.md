@@ -23,10 +23,18 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+Access values from a Provider component without prop drilling too much
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+actions are objects that are dispatched to the reducer
+the reducer reduces the state to a single value and returns a new object
+the store holds a "state tree" which takes in the reducer fn
+because everything ends up being reduced to the logic that is written in the reducer
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+one e.g. i can think of is when you are trying to hold some local app state, say in like a form
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+it intersects our action creator ?  before they get sent to the reducer, and allows us to manually dispatches actions depending on output of an asynchronous API call, ask Jamie what happens without it
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+I believe it's the useDispatch, but not sure why I couldn't use it within useEffect
 
 ## Project Set Up
 
