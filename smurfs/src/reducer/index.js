@@ -55,17 +55,16 @@ export const reducer = (state = initialState, { type, payload }) => {
         isAdding: true,
       };
     case ADD_SUCCESS:
-      const newSmurf = payload
+      const newData = payload;
       return {
         ...state,
-        data: [...state.data, newSmurf],
+        data: newData,
         error: "",
         isAdding: false,
       };
     case ADD_FAILED:
       return {
         ...state,
-        data: [],
         error: "Failed to Add",
         isAdding: false,
       };

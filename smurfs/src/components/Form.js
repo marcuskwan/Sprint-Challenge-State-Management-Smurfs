@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
-import {addSmurf} from "../actions"
+import { addSmurf } from "../actions";
 
 import PropTypes from "prop-types";
 
-function Form({addSmurf}) {
+function Form({ addSmurf }) {
   const [inputs, setInputs] = useState({
     name: "",
     age: "",
@@ -12,7 +13,7 @@ function Form({addSmurf}) {
   });
   const handleSubmit = e => {
     e.preventDefault();
-    addSmurf(inputs)
+    addSmurf(inputs);
   };
 
   const handleChanges = e => {
@@ -51,4 +52,11 @@ function Form({addSmurf}) {
 
 Form.propTypes = {};
 
-export default connect({},{addSmurf})(Form);
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  { addSmurf },
+)(Form);
