@@ -1,12 +1,3 @@
-const initialState = {
-  data: [],
-  error: "",
-  isFetching: false,
-  isAdding: false,
-  isUpdating: false,
-  isDeleting: false,
-};
-
 // action names
 export const FETCH_START = "FETCH_START";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
@@ -24,6 +15,15 @@ export const DELETE_START = "DELETE_START";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const DELETE_FAILED = "DELETE_FAILED";
 
+export const initialState = {
+  data: [],
+  error: "",
+  isFetching: false,
+  isAdding: false,
+  isUpdating: false,
+  isDeleting: false,
+};
+
 export const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_START:
@@ -38,14 +38,36 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         data: payload,
         error: "",
-        isFetching: true,
+        isFetching: false,
       };
     case FETCH_FAILED:
       return {
         ...state,
         data: [],
         error: "Failed to fetch",
-        isFetching: true,
+        isFetching: false,
+      };
+    case ADD_START:
+      return {
+        ...state,
+        data: [],
+        error: "",
+        isAdding: true,
+      };
+    case ADD_SUCCESS:
+      const newSmurf = payload
+      return {
+        ...state,
+        data: [...state.data, newSmurf],
+        error: "",
+        isAdding: false,
+      };
+    case ADD_FAILED:
+      return {
+        ...state,
+        data: [],
+        error: "Failed to Add",
+        isAdding: false,
       };
     default:
       return state;

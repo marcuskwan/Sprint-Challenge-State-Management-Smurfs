@@ -39,6 +39,7 @@ function Form(props) {
           value={inputs.height}
           onChange={handleChanges}
         />
+        <button>submit</button>
       </form>
     </div>
   );

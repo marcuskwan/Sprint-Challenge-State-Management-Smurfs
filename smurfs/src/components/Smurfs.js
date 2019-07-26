@@ -1,12 +1,10 @@
-import React, { useEffect, useDispatch } from "react";
-
-import { isFetching } from "../actions";
+import React, { useEffect } from "react";
 
 import PropTypes from "prop-types";
 
-function Smurfs(props) {
+function Smurfs({ isFetching }) {
   useEffect(() => {
-    isFetching();
+    console.log(isFetching);
   }, []);
   return <div />;
 }

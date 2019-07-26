@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
+
+import { isFetching } from "../actions";
 
 import Smurfs from "./Smurfs";
 import Form from "./Form";
@@ -12,10 +14,24 @@ class App extends Component {
       <div className="App">
         {/* <h1>SMURFS! 2.0 W/ Redux</h1> */}
         <Form />
-        <Smurfs />
+        <Smurfs isFetching={isFetching} />
       </div>
     );
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => {
+  return {
+    data: state.data,
+    error: state.error,
+    isFetching: state.isFetching,
+    isAdding: state.isAdding,
+    isUpdating: state.isUpdating,
+    isDeleting: state.isDeleting,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { isFetching },
+)(App);
