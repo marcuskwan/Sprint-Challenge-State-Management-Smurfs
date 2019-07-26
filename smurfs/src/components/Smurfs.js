@@ -1,19 +1,18 @@
-import React,{useEffect} from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect } from "react";
+import axios from "axios";
+
+import PropTypes from "prop-types";
 
 function Smurfs(props) {
-    useEffect(() => {
-        axios.get()
-    }, [input])
-    return (
-        <div>
-
-        </div>
-    )
+  useEffect(() => {
+    axios
+      .get("//localhost:3333/smurfs")
+      .then(res => console.log("get success:", res))
+      .catch(err => console.log(err));
+  }, []);
+  return <div />;
 }
 
-Smurfs.propTypes = {
+Smurfs.propTypes = {};
 
-}
-
-export default Smurfs
+export default Smurfs;

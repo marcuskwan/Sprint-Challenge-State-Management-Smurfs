@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 function Form(props) {
-  const [inputs, setInputs] = {
+  const [inputs, setInputs] = useState({
     name: "",
     age: "",
     height: "",
-  };
-
+  });
   const handleSubmit = e => {
     e.preventDefault();
   };
