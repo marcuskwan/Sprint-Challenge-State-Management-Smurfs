@@ -7,9 +7,9 @@ export const ADD_START = "ADD_START";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAILED = "ADD_FAILED";
 
-export const UPDATE_START = "UPDATE_START";
-export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
-export const UPDATE_FAILED = "UPDATE_FAILED";
+export const EDIT_START = "EDIT_START";
+export const EDIT_SUCCESS = "EDIT_SUCCESS";
+export const EDIT_FAILED = "EDIT_FAILED";
 
 export const DELETE_START = "DELETE_START";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
@@ -20,7 +20,7 @@ export const initialState = {
   error: "",
   isFetching: false,
   isAdding: false,
-  isUpdating: false,
+  isEditing: false,
   isDeleting: false,
 };
 
@@ -55,10 +55,9 @@ export const reducer = (state = initialState, { type, payload }) => {
         isAdding: true,
       };
     case ADD_SUCCESS:
-      const newData = payload;
       return {
         ...state,
-        data: newData,
+        data: payload,
         error: "",
         isAdding: false,
       };
@@ -67,6 +66,46 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         error: "Failed to Add",
         isAdding: false,
+      };
+    case EDIT_START:
+      return {
+        ...state,
+        data: [],
+        error: "",
+        isEditing: true,
+      };
+    case EDIT_SUCCESS:
+      return {
+        ...state,
+        data: payload,
+        error: "",
+        isEditing: false,
+      };
+    case EDIT_FAILED:
+      return {
+        ...state,
+        error: "Failed to delete",
+        isEditing: false,
+      };
+    case DELETE_START:
+      return {
+        ...state,
+        data: [],
+        error: "",
+        isDeleting: true,
+      };
+    case DELETE_SUCCESS:
+      return {
+        ...state,
+        data: payload,
+        error: "",
+        isDeleting: false,
+      };
+    case DELETE_FAILED:
+      return {
+        ...state,
+        error: "Failed to delete",
+        isDeleting: false,
       };
     default:
       return state;

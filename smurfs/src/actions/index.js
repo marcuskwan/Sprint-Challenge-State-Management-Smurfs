@@ -7,6 +7,12 @@ import {
   ADD_START,
   ADD_SUCCESS,
   ADD_FAILED,
+  EDIT_START,
+  EDIT_SUCCESS,
+  EDIT_FAILED,
+  DELETE_START,
+  DELETE_SUCCESS,
+  DELETE_FAILED,
 } from "../reducer";
 
 export const fetchSmurf = () => dispatch => {
@@ -36,5 +42,33 @@ export const addSmurf = newSmurf => dispatch => {
     .catch(err => {
       console.log(err);
       dispatch({ type: ADD_FAILED });
+    });
+};
+
+export const editSmurf = (smurfId,newInfo) => dispatch => {
+  dispatch({ type: EDIT_START });
+  axios
+    .put(`//localhost:3333/smurfs/${smurfId}`, newInfo)
+    .then(res => {
+      console.log("edit success!", res);
+      dispatch({ type: EDIT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: EDIT_FAILED });
+    });
+};
+
+export const deleteSmurf = smurfId => dispatch => {
+  dispatch({ type: DELETE_START });
+  axios
+    .delete(`//localhost:3333/smurfs/${smurfId}`)
+    .then(res => {
+      console.log("delete success!", res);
+      dispatch({ type: DELETE_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: DELETE_FAILED });
     });
 };
