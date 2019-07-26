@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  .message {
+    margin-top: 20px;
+    color: mediumseagreen;
+  }
+  .error {
+    margin-top: 20px;
+    color: palevioletred;
+  }
 }
 
 .App-logo {
@@ -50,6 +58,9 @@
   }
   .height {
     color: indianred;
+  }
+  .edit {
+    color: maroon;
   }
   .delete {
     color: palevioletred;

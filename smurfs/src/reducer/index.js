@@ -9,7 +9,8 @@ export const ADD_FAILED = "ADD_FAILED";
 
 export const SET_EDITING_START = "SET_EDITING_START";
 export const SET_EDITING_SUCCESS = "SET_EDITING_SUCCESS";
-export const SET_EDITING_FAILED = "SET_EDITING_FAILED";
+
+export const CLEAR_EDITING = "CLEAR_EDITING";
 
 export const EDIT_START = "EDIT_START";
 export const EDIT_SUCCESS = "EDIT_SUCCESS";
@@ -22,6 +23,7 @@ export const DELETE_FAILED = "DELETE_FAILED";
 export const initialState = {
   data: [],
   editingSmurf: {},
+  message: "",
   error: "",
   isFetching: false,
   isAdding: false,
@@ -30,11 +32,14 @@ export const initialState = {
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
+  console.log("in reducer's state:", state);
+  console.log("in reducer, payload is:", payload);
   switch (type) {
     case FETCH_START:
       return {
         ...state,
         data: [],
+        message: "Fetch starting..",
         error: "",
         isFetching: true,
       };
@@ -42,6 +47,7 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: payload,
+        message: "Fetch success!",
         error: "",
         isFetching: false,
       };
@@ -49,6 +55,7 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: [],
+        message: "Fetch failed :(",
         error: "Failed to fetch",
         isFetching: false,
       };
@@ -56,6 +63,7 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: [],
+        message: "Adding smurf...",
         error: "",
         isAdding: true,
       };
@@ -63,36 +71,41 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: payload,
+        message: "Adding successful!",
         error: "",
         isAdding: false,
       };
     case ADD_FAILED:
       return {
         ...state,
+        message: "Adding failed :(",
         error: "Failed to Add",
         isAdding: false,
       };
     case SET_EDITING_START:
       return {
         ...state,
+        message: "Setting editing smurf...",
         error: "",
         editingSmurf: {},
       };
     case SET_EDITING_SUCCESS:
       return {
         ...state,
+        message: "Successfully set editing smurf!",
         error: "",
         editingSmurf: payload,
       };
-    case SET_EDITING_FAILED:
+    case CLEAR_EDITING:
       return {
         ...state,
-        error: "Failed to set editing smurf",
+        message: "Cleared editingSmurf & inputs!",
         editingSmurf: {},
       };
     case EDIT_START:
       return {
         ...state,
+        message: "Starting put request...",
         data: [],
         error: "",
         isEditing: true,
@@ -100,6 +113,7 @@ export const reducer = (state = initialState, { type, payload }) => {
     case EDIT_SUCCESS:
       return {
         ...state,
+        message: "PUT request successful!",
         data: payload,
         error: "",
         isEditing: false,
@@ -107,12 +121,14 @@ export const reducer = (state = initialState, { type, payload }) => {
     case EDIT_FAILED:
       return {
         ...state,
+        message: "PUT request failed :(",
         error: "Failed to delete",
         isEditing: false,
       };
     case DELETE_START:
       return {
         ...state,
+        message: "Starting delete request...",
         data: [],
         error: "",
         isDeleting: true,
@@ -120,6 +136,7 @@ export const reducer = (state = initialState, { type, payload }) => {
     case DELETE_SUCCESS:
       return {
         ...state,
+        message: "Delete request successful!",
         data: payload,
         error: "",
         isDeleting: false,
@@ -127,7 +144,7 @@ export const reducer = (state = initialState, { type, payload }) => {
     case DELETE_FAILED:
       return {
         ...state,
-        error: "Failed to delete",
+        error: "Delete request failed...",
         isDeleting: false,
       };
     default:
