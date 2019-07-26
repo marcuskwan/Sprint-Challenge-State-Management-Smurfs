@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { addSmurf } from "../actions";
+import Smurfs from "./Smurfs";
+
+import { addSmurf, editSmurf } from "../actions";
 
 import PropTypes from "prop-types";
 
-function Form({ addSmurf }) {
+function Form({ addSmurf, editSmurf }) {
   const [inputs, setInputs] = useState({
     name: "",
     age: "",
@@ -34,7 +36,7 @@ function Form({ addSmurf }) {
         />
         <input
           name="age"
-          //? where in the server does it say that you can't have a same name smurf or not have a string as a number input? 
+          //? where in the server does it say that you can't have a same name smurf or not have a string as a number input?
           type="number"
           placeholder="age"
           value={inputs.age}
@@ -48,19 +50,23 @@ function Form({ addSmurf }) {
         />
         <button className="submit">submit</button>
       </form>
+      <Smurfs />
     </div>
   );
 }
 
 Form.propTypes = {
   addSmurf: PropTypes.func,
+  editSmurf: PropTypes.func,
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    
+  };
 };
 
 export default connect(
   mapStateToProps,
-  { addSmurf },
+  { addSmurf, editSmurf },
 )(Form);

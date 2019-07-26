@@ -7,6 +7,10 @@ export const ADD_START = "ADD_START";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAILED = "ADD_FAILED";
 
+export const SET_EDITING_START = "SET_EDITING_START";
+export const SET_EDITING_SUCCESS = "SET_EDITING_SUCCESS";
+export const SET_EDITING_FAILED = "SET_EDITING_FAILED";
+
 export const EDIT_START = "EDIT_START";
 export const EDIT_SUCCESS = "EDIT_SUCCESS";
 export const EDIT_FAILED = "EDIT_FAILED";
@@ -17,6 +21,7 @@ export const DELETE_FAILED = "DELETE_FAILED";
 
 export const initialState = {
   data: [],
+  editingSmurf: {},
   error: "",
   isFetching: false,
   isAdding: false,
@@ -66,6 +71,24 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         error: "Failed to Add",
         isAdding: false,
+      };
+    case SET_EDITING_START:
+      return {
+        ...state,
+        error: "",
+        editingSmurf: {},
+      };
+    case SET_EDITING_SUCCESS:
+      return {
+        ...state,
+        error: "",
+        editingSmurf: payload,
+      };
+    case SET_EDITING_FAILED:
+      return {
+        ...state,
+        error: "Failed to set editing smurf",
+        editingSmurf: {},
       };
     case EDIT_START:
       return {

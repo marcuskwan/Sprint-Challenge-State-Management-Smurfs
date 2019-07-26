@@ -7,6 +7,9 @@ import {
   ADD_START,
   ADD_SUCCESS,
   ADD_FAILED,
+  SET_EDITING_START,
+  SET_EDITING_SUCCESS,
+  SET_EDITING_FAILED,
   EDIT_START,
   EDIT_SUCCESS,
   EDIT_FAILED,
@@ -45,7 +48,18 @@ export const addSmurf = newSmurf => dispatch => {
     });
 };
 
-export const editSmurf = (smurfId,newInfo) => dispatch => {
+export const setEditingStart = () => ({
+  type: SET_EDITING_START,
+});
+export const setEditingSuccess = editingSmurf => ({
+  type: SET_EDITING_SUCCESS,
+  payload: editingSmurf,
+});
+export const setEditingFailed = () => ({
+  type: SET_EDITING_FAILED,
+});
+
+export const editSmurf = (smurfId, newInfo) => dispatch => {
   dispatch({ type: EDIT_START });
   axios
     .put(`//localhost:3333/smurfs/${smurfId}`, newInfo)
