@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { FETCH_START, FETCH_SUCCESS, FETCH_FAILED, ADD_START, ADD_SUCCESS, ADD_FAILED } from "../reducer";
 
-export const isFetching = () => dispatch => {
+export const fetchSmurf = () => dispatch => {
   dispatch({ type: FETCH_START });
   axios
     .get("//localhost:3333/smurfs")
@@ -16,10 +16,10 @@ export const isFetching = () => dispatch => {
     });
 };
 
-export const isAdding = () => dispatch => {
+export const addSmurf = newSmurf => dispatch => {
   dispatch({ type: ADD_START });
   axios
-    .post("//localhost:3333/smurfs")
+    .post("//localhost:3333/smurfs", newSmurf)
     .then(res => {
       console.log("post success!", res);
       dispatch({ type: ADD_SUCCESS, payload: res.data });

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+
+import {addSmurf} from "../actions"
+
 import PropTypes from "prop-types";
 
-function Form(props) {
+function Form({addSmurf}) {
   const [inputs, setInputs] = useState({
     name: "",
     age: "",
@@ -9,6 +12,7 @@ function Form(props) {
   });
   const handleSubmit = e => {
     e.preventDefault();
+    addSmurf(inputs)
   };
 
   const handleChanges = e => {
@@ -47,4 +51,4 @@ function Form(props) {
 
 Form.propTypes = {};
 
-export default Form;
+export default connect({},{addSmurf})(Form);

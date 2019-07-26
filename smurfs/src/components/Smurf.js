@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-function Smurf(props) {
-    return (
-        <div>
-            
-        </div>
-    )
+function Smurf({ smurf }) {
+  return (
+    <div className="smurf">
+      <div className="name">{smurf.name}</div>
+      <div className="age">{smurf.age}</div>
+      <div className="height">{smurf.height}</div>
+    </div>
+  );
 }
 
-Smurf.propTypes = {
+Smurf.propTypes = {};
 
-}
-
-export default Smurf
+export default Smurf;
